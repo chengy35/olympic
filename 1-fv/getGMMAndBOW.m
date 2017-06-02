@@ -1,7 +1,11 @@
-function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir)
+function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir,totalnumber,gmmsize)
     pcaFactor = 0.5;
-    totalnumber = 256000;
-    gmmsize = 256;
+
+    if ~exist(fullfile(vocabDir,'/all'),'dir')
+        mkdir(fullfile(vocabDir,'/all'));
+    end
+    vocabDir = [vocabDir,'/all/'];
+    
     sampleFeatFile = fullfile(vocabDir,'featfile.mat');
     modelFilePath = fullfile(vocabDir,'gmmvocmodel.mat');
     if exist(modelFilePath,'file')
@@ -11,7 +15,7 @@ function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir)
     start_index = 1;
     end_index = 1;
     if ~exist(sampleFeatFile,'file') 
-        allAll = zeros(totalnumber,396);
+        allAll = zeros(totalnumber,96*2);
         num_videos = size(fullvideoname,1);
         num_samples_per_vid = round(totalnumber / num_videos);
         warning('getGMMAndBOW : update num_videos only to include training videos')
@@ -26,11 +30,10 @@ function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir)
                     [obj,trj,hog,hof,mbhx,mbhy] = extract_improvedfeatures(fullvideoname{i}) ;
                     save(descriptorFile,'obj','trj','hog','hof','mbhx','mbhy'); 
                 end
-				hog = sqrt(hog);
-				hof = sqrt(hof);
+                hog = sqrt(hog); hof = sqrt(hof);
                 mbhx = sqrt(mbhx);mbhy = sqrt(mbhy);
-				all = [hog hof mbhx mbhy];
-                rnsam = randperm(size(all,1));
+                all = [hog, hof, mbhx, mbhy];
+                rnsam = randperm(size(mbhx,1));
                 if numel(rnsam) > num_samples_per_vid
                     rnsam = rnsam(1:num_samples_per_vid);
                 end

@@ -1,4 +1,11 @@
-function llcEncodeFeatures(centers,fullvideoname,descriptor_path,featDir,class_category,video_dir)
+function llcEncodeFeatures(centers,fullvideoname,descriptor_path,featDir_LLC,class_category,video_dir)
+   if ~exist(fullfile(featDir_LLC,'all'),'dir')
+        mkdir(fullfile(featDir_LLC,'all'));
+    end
+    if ~exist(fullfile(featDir_LLC,'call'),'dir')
+        mkdir(fullfile(featDir_LLC,'call'));
+    end
+
     category = dir(video_dir);
     pyramid = [1, 2, 4];                % spatial block structure for the SPM               
     knn = 5;                            % number of neighbors for local coding
@@ -7,14 +14,14 @@ function llcEncodeFeatures(centers,fullvideoname,descriptor_path,featDir,class_c
     	[~,partfile,~] = fileparts(fullvideoname{i});
             descriptorFile = fullfile(descriptor_path,sprintf('%s.mat',partfile));  
 	if exist(descriptorFile,'file') == 2 
-		allfeatFile = fullfile(featDir,sprintf('/all/%d.mat',i));
+		allfeatFile = fullfile(featDir_LLC,sprintf('/all/%d.mat',i));
 		if exist(allfeatFile,'file') == 0
 			timest = tic();
 			index = index + 1;
 			load(descriptorFile);
-			hog = sqrt(hog);hof = sqrt(hof);
+			hog = sqrt(hog); hof = sqrt(hof);
 			mbhx = sqrt(mbhx);mbhy = sqrt(mbhy);
-			all = [hog hof mbhx , mbhy];
+			all = [hog, hof, mbhx, mbhy];
 			feaSet.feaArr = all';
 			feaSet.x = obj(:,2);
 			feaSet.y = obj(:,3); 

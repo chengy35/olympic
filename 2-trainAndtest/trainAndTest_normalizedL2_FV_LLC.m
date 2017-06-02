@@ -15,21 +15,20 @@ function trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_F
 	featFile{j} = fullfile(featDir_FV,'wall',sprintf('%s.mat',partfile));  
 	fvtemp =  dlmread(featFile{j});
 
-	featFile{j} = [fullfile(featDir_LLC,sprintf('/mbh/%d.mat',trn_indx(j)))];
+	featFile{j} = [fullfile(featDir_LLC,sprintf('/all/%d.mat',trn_indx(j)))];
 	llctemp =  dlmread(featFile{j});
 	llctemp = llctemp';
 	Dimension = size(fvtemp,2) + size(llctemp,2);
-
+	
 	if ~exist('TestData_Kern_cell.mat','file')
- 		    if ~exist('ALL_TrainData.mat','file')
+ 		    if ~exist('TrainData.mat','file')
 			TrainData = zeros(size(trn_indx,1),Dimension);
-			fv_trainData = load('TrainData.mat');%'
 			for j = 1:size(trn_indx,1)
 				[~,partfile,~] = fileparts(fullvideoname{trn_indx(j)});
 				featFile{j} = fullfile(featDir_FV,'wall',sprintf('%s.mat',partfile));  
-				fprintf('read w in training: %d \n',j);
+				fprintf('read wall in training: %d \n',j);
 				fvtemp =  dlmread(featFile{j});
-				featFile{j} = [fullfile(featDir_LLC,sprintf('/mbh/%d.mat',trn_indx(j)))];
+				featFile{j} = [fullfile(featDir_LLC,sprintf('/all/%d.mat',trn_indx(j)))];
 				fprintf('read llc in training: %d \n',j);
 				llctemp =  dlmread(featFile{j});
 				llctemp = llctemp';
@@ -46,14 +45,14 @@ function trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_F
 			TrainData_Kern_cell = [TrainData * TrainData'];
 			save('./TrainData_Kern_cell','TrainData_Kern_cell','-v7.3');
 			clear TrainData_Kern_cell;
-			if ~exist('ALL_TestData.mat','file')
+			if ~exist('TestData.mat','file')
 		    	TestData = zeros(size(test_indx,1),Dimension);
 			for j = 1:size(test_indx,1)
 				[~,partfile,~] = fileparts(fullvideoname{test_indx(j)});
-				featFile{j} = fullfile(featDir_FV,'w',sprintf('%s.mat',partfile));  
-				fprintf('read w in testing : %d \n',j);
+				featFile{j} = fullfile(featDir_FV,'wall',sprintf('%s.mat',partfile));  
+				fprintf('read wall in testing : %d \n',j);
 				fvtemp = dlmread(featFile{j});
-				featFile{j} = [fullfile(featDir_LLC,sprintf('/mbh/%d.mat',test_indx(j)))];
+				featFile{j} = [fullfile(featDir_LLC,sprintf('/all/%d.mat',test_indx(j)))];
 				fprintf('read llc in testing : %d \n',j);
 				llctemp =  dlmread(featFile{j});
 				llctemp = llctemp';

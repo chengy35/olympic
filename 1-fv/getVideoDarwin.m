@@ -1,11 +1,13 @@
-function getVideoDarwin(fullvideoname,featType,featDir,descriptor_path)
-    if ~exist(fullfile(featDir,'wall'),'dir')
-        mkdir(fullfile(featDir,'wall'));
+function getVideoDarwin(fullvideoname,featDir_FV,descriptor_path,gmmSize,allFeatureDimension)
+    if ~exist(fullfile(featDir_FV,'wall'),'dir')
+        mkdir(fullfile(featDir_FV,'wall'));
     end
+    CVAL = 1 ;
+    dimension = gmmSize*allFeatureDimension;
     for i = 1:length(fullvideoname) % 1-16 actions
             [~,partfile,~] = fileparts(fullvideoname{i});
-            allfeatFile = fullfile(featDir,sprintf('/all/%d.mat',i));
-            wFile = fullfile(featDir,'w',sprintf('%s.mat',partfile));  
+            allfeatFile = fullfile(featDir_FV,sprintf('/all/%d.mat',i));
+            wFile = fullfile(featDir_FV,'wall',sprintf('%s.mat',partfile));  
             if exist(wFile,'file') == 2
                 fprintf('%s exist! \n',wFile);
                 continue;
