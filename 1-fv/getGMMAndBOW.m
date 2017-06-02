@@ -15,7 +15,7 @@ function [gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir,t
     start_index = 1;
     end_index = 1;
     if ~exist(sampleFeatFile,'file') 
-        allAll = zeros(totalnumber,96*2);
+        allAll = zeros(totalnumber,396);
         num_videos = size(fullvideoname,1);
         num_samples_per_vid = round(totalnumber / num_videos);
         warning('getGMMAndBOW : update num_videos only to include training videos')
