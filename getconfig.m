@@ -2,7 +2,10 @@ function [video_data_dir,video_dir,fullvideoname, videoname,vocabDir,featDir_FV,
     vocabDir = '~/remote/olympicData/Vocab'; % Path where dictionary/GMM will be saved.
     featDir_LLC = '~/remote/olympicData/llc/feats'; % Path where features will be saved
     featDir_FV = '~/remote/olympicData/fv/feats'; % Path where features will be saved
-    descriptor_path = '~/remote/olympicData/descriptor/'; % change paths here 
+    descriptor_path = '~/remote/olympicData/descriptorall/'; % change paths here 
+     if ~exist(fullfile(descriptor_path),'dir')
+            mkdir(fullfile(descriptor_path));
+    end
     video_dir = '~/remote/oly_sports/';
     video_data_dir = '~/remote/olympicData/';
     category = dir(video_dir);

@@ -7,8 +7,6 @@ setenv('LD_LIBRARY_PATH','/usr/local/lib/');
 addpath('~/lib/liblinear/matlab');
 addpath('~/lib/libsvm/matlab');
 addpath('~/lib/natsort');
-addpath('~/lib/chol_incomplete/');
-addpath('/usr/local/MATLAB/extern/lib/essential/');
 addpath('~/lib/exact_alm_rpca/');
 
 [video_data_dir,video_dir,fullvideoname, videoname,vocabDir,featDir_FV,featDir_LLC,descriptor_path,class_category,actionName] = getconfig();
