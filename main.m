@@ -28,7 +28,7 @@ addpath('~/lib/exact_alm_rpca/');
 	fprintf('generate Fisher Vectors \n');
 	FVEncodeFeatures_w(fullvideoname,gmm,vocabDir,st,send,featDir_FV,descriptor_path,'all');
 	allFeatureDimension = 396;
-	getVideoDarwin(fullvideoname,featType,featDir_FV,descriptor_path,gmmSize,allFeatureDimension);
+	getVideoDarwin(fullvideoname,featDir_FV,descriptor_path,gmmSize,allFeatureDimension);
 
 	encode = 'llc';
 	fprintf('begin llc encoding\n');
