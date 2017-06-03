@@ -1,9 +1,9 @@
 function [centers] =  SelectSalient(kmeans_size,totalnumber,fullvideoname,descriptor_path,vocabDir)
 
-    if ~exist(fullfile(vocabDir,'all'),'dir')
-        mkdir(fullfile(vocabDir,'all'));
+    if ~exist(fullfile(vocabDir,'/all'),'dir')
+        mkdir(fullfile(vocabDir,'/all'));
     end
-    vocabDir = [vocabDir 'all/'];
+    vocabDir = [vocabDir '/all/'];
 
     sampleFeatFile = fullfile(vocabDir,'featfile.mat');
     modelFilePath = fullfile(vocabDir,'kmenasmodel.mat');
