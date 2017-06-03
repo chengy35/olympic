@@ -14,7 +14,7 @@ function [centers] =  SelectSalient(kmeans_size,totalnumber,fullvideoname,descri
     start_index = 1;
     end_index = 1;
     if ~exist(sampleFeatFile,'file')
-    	allAll = zeros(totalnumber,96*2);
+    	allAll = zeros(totalnumber,396);
 	num_videos = size(fullvideoname,1);
              num_samples_per_vid = round(totalnumber / num_videos);
 	for i = 1:num_videos       
