@@ -16,6 +16,7 @@ function getVideoDarwin(fullvideoname,featDir_FV,descriptor_path,gmmSize,allFeat
             if exist(allfeatFile,'file') == 2
                 timest = tic();
                 data = dlmread(allfeatFile);
+                data = reshape(data,dimension,size(data,1)/dimension)';
                 w = VideoDarwin(data);
                 dlmwrite(wFile,w');
                 clear data;
