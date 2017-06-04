@@ -15,7 +15,7 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 	featFile{j} = fullfile(featDir_FV,'wall',sprintf('%s.mat',partfile));  
 	fvtemp =  dlmread(featFile{j});
 
-	Dimension = size(fvtemp,2);
+	Dimension = size(fvtemp,1);
 
 	if ~exist('TestData_Kern_cell.mat','file')
  		    if ~exist('TrainData.mat','file')

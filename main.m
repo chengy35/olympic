@@ -22,7 +22,7 @@ addpath('~/lib/exact_alm_rpca/');
 	addpath('1-fv');
 	fprintf('getGMM \n');
 	% create GMM model, Look at this function see if parameters are okay for you.
-	totalnumber = 1000000; %256000
+	totalnumber = 2560000; %1000000
 	gmmSize = 256;
 	[gmm] = getGMMAndBOW(fullvideoname,vocabDir,descriptor_path,video_dir,totalnumber,gmmSize);
 	fprintf('generate Fisher Vectors \n');
