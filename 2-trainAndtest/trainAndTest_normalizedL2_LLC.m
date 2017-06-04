@@ -88,3 +88,11 @@ function [ap ] = train_and_classify(TrainData_Kern_cell,TestData_Kern_cell,trnLB
 	[rc, pr, info] = vl_pr(testLBL, scores(:,1)) ; 
 	ap = info.ap;
 end
+
+function X = normalizeL2(X)
+	for i = 1 : size(X,1)
+		if norm(X(i,:)) ~= 0
+			X(i,:) = X(i,:) ./ norm(X(i,:));
+		end
+    end	   
+end
