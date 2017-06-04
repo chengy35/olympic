@@ -1,4 +1,4 @@
-function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,class_category,actionName);
+function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,actionName);
 	nClasses = 16;
 	resultFile = ['./' encode '_result'];
 	FileName = ['./2-trainAndtest/classlabel'];
