@@ -32,7 +32,7 @@ function trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_F
 				fprintf('read llc in training: %d \n',j);
 				llctemp =  dlmread(featFile{j});
 				llctemp = llctemp';
-				temp = [normalizeL2(sqrt(llctemp')'), normalizeL2(sqrt(fvtemp')')];
+				temp = [normalizeL2(sqrt(llctemp')'), normalizeL2(sqrt(fvtemp'))];
 				TrainData(j,:)  = temp';
 				clear temp;
 				clear fvtemp;
@@ -56,7 +56,7 @@ function trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_F
 				fprintf('read llc in testing : %d \n',j);
 				llctemp =  dlmread(featFile{j});
 				llctemp = llctemp';
-				temp = [normalizeL2(sqrt(llctemp')'), normalizeL2(sqrt(fvtemp')')];
+				temp = [normalizeL2(sqrt(llctemp')'), normalizeL2(sqrt(fvtemp'))];
 				TestData(j,:)  = temp';
 				clear temp;
 				clear fvtemp;
