@@ -43,5 +43,5 @@ addpath('~/lib/exact_alm_rpca/');
 
 addpath('2-trainAndtest');
 %trainAndTest_normalizedL2_LLC(video_data_dir,fullvideoname,featDir_LLC,encode,actionName);
-%trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,actionName);
-trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,actionName);
+trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,actionName);
+%trainAndTest_normalizedL2_FV_LLC(video_data_dir,fullvideoname,featDir_FV,featDir_LLC,encode,actionName);
