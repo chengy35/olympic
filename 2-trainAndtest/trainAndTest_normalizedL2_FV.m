@@ -25,7 +25,8 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 				featFile{j} = fullfile(featDir_FV,'wall',sprintf('%s.mat',partfile));  
 				fprintf('read wall in training: %d \n',j);
 				temp =  dlmread(featFile{j});
-				TrainData(j,:)  = normalizeL2(sqrt(temp'),'Power-Intra-L2',256*2);
+				%TrainData(j,:)  = sqrt(normalize(temp,'Power-Intra-L2',256*2));
+				TrainData(j,:) = normalizeL2(sqrt(temp));
 				clear temp;
 				
 			end
@@ -43,7 +44,8 @@ function trainAndTest_normalizedL2_FV(video_data_dir,fullvideoname,featDir_FV,fe
 				featFile{j} = fullfile(featDir_FV,'wall',sprintf('%s.mat',partfile));  
 				fprintf('read wall in testing : %d \n',j);
 				temp = dlmread(featFile{j});
-				TestData(j,:)  = normalizeL2(sqrt(temp'),'Power-Intra-L2',256*2);
+				%TestData(j,:)  = sqrt(normalize(temp,'Power-Intra-L2',256*2));
+				TestData(j,:) = normalizeL2(sqrt(temp));
 				clear temp;
 				
 			end
